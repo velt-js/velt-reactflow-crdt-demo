@@ -23,7 +23,6 @@ const selector = (state: any) => ({
     setEdges: state.setEdges,
 });
 
-
 const initialNodes = [
     {
         id: '0',
