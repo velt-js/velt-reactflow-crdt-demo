@@ -7,10 +7,7 @@ function App() {
 
   return (
     <>
-      <VeltProvider apiKey={'krUVK3LgYeifgViaY3Oa'} config={{
-        version: '4.5.0-beta.158',
-        develop: true,
-      } as any}>
+      <VeltProvider apiKey={'Emcfab4ysRXaC1CZ8hmG'}>
         <div className="app-container">
           <header className="app-header">
             <h1 className="app-title">Velt ReactFlow CRDT App</h1>
