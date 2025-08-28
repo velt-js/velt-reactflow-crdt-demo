@@ -46,7 +46,7 @@ const AddNodeOnEdgeDrop = () => {
     const storeRef = useRef<any>(null);
     if (storeRef.current === null) {
         storeRef.current = veltReactFlowStore({
-            editorId: 'react-flow-crdt-dev-22',
+            editorId: 'react-flow-crdt-1-29-aug-2025',
             initialEdges,
             initialNodes,
             veltClient: client,
