@@ -23,18 +23,20 @@ const selector = (state: any) => ({
     setEdges: state.setEdges,
 });
 
+const getId = () => {
+    return crypto.randomUUID();
+}
+const firstNodeId = getId();
 const initialNodes = [
     {
-        id: '0',
+        id: firstNodeId,
         type: 'input',
-        data: { label: 'Node' },
+        data: { label: `Node ${firstNodeId}` },
         position: { x: 0, y: 50 },
     },
 ];
 const initialEdges: Edge[] = [];
 
-let id = 9;
-const getId = () => `${id++}`;
 const nodeOrigin: [number, number] = [0.5, 0];
 
 const AddNodeOnEdgeDrop = () => {
@@ -44,7 +46,7 @@ const AddNodeOnEdgeDrop = () => {
     const storeRef = useRef<any>(null);
     if (storeRef.current === null) {
         storeRef.current = veltReactFlowStore({
-            editorId: 'react-flow-crdt-dev-4',
+            editorId: 'react-flow-crdt-dev-22',
             initialEdges,
             initialNodes,
             veltClient: client,
