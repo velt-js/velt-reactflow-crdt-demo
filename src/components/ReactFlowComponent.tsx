@@ -8,20 +8,9 @@ import {
 } from '@xyflow/react';
 import { useCallback, useRef } from 'react';
 
-import { useVeltClient, useVeltInitState } from '@veltdev/react';
-import { veltReactFlowStore } from '@veltdev/reactflow-crdt';
+import { useVeltInitState } from '@veltdev/react';
 import '@xyflow/react/dist/style.css';
-import { useShallow } from 'zustand/react/shallow';
-
-const selector = (state: any) => ({
-    nodes: state.nodes,
-    edges: state.edges,
-    onNodesChange: state.onNodesChange,
-    onEdgesChange: state.onEdgesChange,
-    onConnect: state.onConnect,
-    setNodes: state.setNodes,
-    setEdges: state.setEdges,
-});
+import { useVeltReactFlowCrdtExtension } from '@veltdev/reactflow-crdt';
 
 const getId = () => {
     return crypto.randomUUID();
@@ -41,30 +30,15 @@ const nodeOrigin: [number, number] = [0.5, 0];
 
 const AddNodeOnEdgeDrop = () => {
 
-    const { client } = useVeltClient();
-
-    const storeRef = useRef<any>(null);
-    if (storeRef.current === null) {
-        storeRef.current = veltReactFlowStore({
-            editorId: 'react-flow-crdt-1-29-aug-2025',
-            initialEdges,
-            initialNodes,
-            veltClient: client,
-        });
-    }
-    const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = storeRef.current(
-        useShallow(selector),
-    );
+    const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useVeltReactFlowCrdtExtension({
+        editorId: 'react-flow-crdt-1-1-sept-2025',
+        initialEdges,
+        initialNodes,
+    });
 
     const reactFlowWrapper = useRef(null);
 
-    // const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    // const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const { screenToFlowPosition } = useReactFlow();
-    // const onConnect = useCallback(
-    //   (params) => setEdges((eds) => addEdge(params, eds)),
-    //   [],
-    // );
 
     const onConnectEnd = useCallback(
         (event: any, connectionState: any) => {
