@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     Background,
+    Node,
     ReactFlow,
     ReactFlowProvider,
     useReactFlow,
@@ -9,8 +10,8 @@ import {
 import { useCallback, useRef } from 'react';
 
 import { useVeltInitState } from '@veltdev/react';
-import '@xyflow/react/dist/style.css';
 import { useVeltReactFlowCrdtExtension } from '@veltdev/reactflow-crdt';
+import '@xyflow/react/dist/style.css';
 
 const getId = () => {
     return crypto.randomUUID();
@@ -48,7 +49,7 @@ const AddNodeOnEdgeDrop = () => {
                 const id = getId();
                 const { clientX, clientY } =
                     'changedTouches' in event ? event.changedTouches[0] : event;
-                const newNode = {
+                const newNode: Node = {
                     id,
                     position: screenToFlowPosition({
                         x: clientX,
